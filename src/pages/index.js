@@ -25,6 +25,7 @@ const IndexPage = () => (
                     date={node.frontmatter.date}
                     body={node.excerpt}
                     fluid={node.frontmatter.image.childImageSharp.fluid}
+                    tags={node.frontmatter.tags}
                   /> // query에서 받아온 data를 render의 인자로 주고 각 data속의 노드들을 Post에 넣어서 표현한다.
                 ))}
               </div>
@@ -55,6 +56,7 @@ const indexQuery = graphql`
             author
             path
             title
+            tags
             image {
               childImageSharp {
                 fluid(maxWidth: 600) {
