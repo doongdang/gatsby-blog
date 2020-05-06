@@ -21,6 +21,7 @@ const Sidebar = () => (
             Subscribe
           </button>
         </Form>
+        {/*이부분은 필요 없어서 추후에 다른기능으로 대체할것 아마도 글 카테고리 목록으로 대체하지않을까 싶기도한데*/}
       </CardBody>
     </Card>
     <Card>
