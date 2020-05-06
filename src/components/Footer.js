@@ -27,7 +27,7 @@ const Footer = () => (
             rel="noopener noreferrer"
             className="instagram"
           >
-            <i class="fab fa-instagram fa-2x" />
+            <i className="fab fa-instagram fa-2x" />
           </a>
         </li>
         <li>
@@ -37,7 +37,7 @@ const Footer = () => (
             rel="noopener noreferrer"
             className="github"
           >
-            <i class="fab fa-github fa-2x" />
+            <i className="fab fa-github fa-2x" />
           </a>
         </li>
       </ul>
