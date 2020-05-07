@@ -5,9 +5,19 @@ import SEO from "../components/seo"
 import { Card, CardBody, CardSubtitle, Badge } from "reactstrap"
 import Img from "gatsby-image"
 import { slugify } from "../util/utilityFunctions"
+import { DiscussionEmbed } from "disqus-react"
 
-const SinglePost = ({ data }) => {
+const SinglePost = ({ data, pageContext }) => {
   const post = data.markdownRemark.frontmatter
+
+  const baseUrl = "https://example.co.kr/"
+  const disqusShortname = "code-blog-9"
+  const disqusConfig = {
+    identifier: data.markdownRemark.id,
+    title: post.title,
+    url: baseUrl + pageContext.slug,
+  } // comment관련 설정
+
   return (
     <Layout pageTitle={post.title}>
       <SEO title={post.title} />
@@ -35,6 +45,8 @@ const SinglePost = ({ data }) => {
           </ul>
         </CardBody>
       </Card>
+      <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+      {/*comment 추가 */}
     </Layout>
   )
 }
