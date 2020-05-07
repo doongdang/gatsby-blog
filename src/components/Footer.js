@@ -12,7 +12,7 @@ const Footer = () => (
       <ul className="social-links-list">
         <li>
           <a
-            href="https://www.facebook.com"
+            href="https://www.facebook.com/doongdang/"
             target="_blank"
             rel="noopener noreferrer"
             className="facebook"
