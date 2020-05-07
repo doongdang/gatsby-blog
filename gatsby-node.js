@@ -8,6 +8,7 @@
 
 const { slugify } = require("./src/util/utilityFunctions")
 const path = require("path")
+const _ = require("lodash")
 
 exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
@@ -23,7 +24,11 @@ exports.onCreateNode = ({ node, actions }) => {
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
-  const singlePostTemplate = path.resolve("src/templates/single-post.js")
+
+  const templates = {
+    singlePost: path.resolve("src/templates/single-post.js"),
+    tagsPage: path.resolve("src/templates/tags-page.js"),
+  }
 
   return graphql(`
     {
@@ -32,6 +37,7 @@ exports.createPages = ({ actions, graphql }) => {
           node {
             frontmatter {
               author
+              tags
             }
             fields {
               slug
@@ -45,16 +51,43 @@ exports.createPages = ({ actions, graphql }) => {
       return Promise.reject(res.errors)
     }
     const posts = res.data.allMarkdownRemark.edges
-
+    //Create Single  post pages
     posts.forEach(({ node }) => {
       createPage({
         path: node.fields.slug,
-        component: singlePostTemplate,
+        component: templates.singlePost,
         context: {
           //slug값을 넘겨준다. post를 가져오기 위한 template
           slug: node.fields.slug,
         },
       })
+    })
+
+    //Get all tag 다시보기 아직 이해못함
+
+    let tags = []
+    _.each(posts, edges => {
+      if (_.get(edges, "node.frontmatter.tags")) {
+        //=> edges가 node.frontmatter.tags의 값을 가지고 있다면 실행
+        tags = tags.concat(edges.node.frontmatter.tags) //
+      }
+    })
+
+    let tagPostCounts = {}
+    tags.forEach(tag => {
+      tagPostCounts[tag] = (tagPostCounts[tag] || 0) + 1
+    })
+
+    tags = _.uniq(tags)
+
+    //tag페이지 만들기 요것도 이해못ㄱ함
+    createPage({
+      path: `/tags`,
+      component: templates.tagsPage,
+      context: {
+        tags,
+        tagPostCounts,
+      },
     })
   })
 }
