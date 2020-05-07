@@ -32,7 +32,9 @@ const SinglePost = ({ data }) => {
                 {post.tags.map(tag => (
                   <li key={tag}>
                     <Link to={`/tag${slugify(tag)}`}>
-                      <Badge colr="primary">{tag}</Badge>
+                      <Badge color={"info"} className={"text-uppercase"}>
+                        {tag}
+                      </Badge>
                     </Link>
                   </li>
                 ))}
@@ -50,7 +52,7 @@ const SinglePost = ({ data }) => {
 
 export const postQuery = graphql`
   query blogPost($slug: String!) {
-    markdownRemark(frontmatter: { path: { eq: $slug } }) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
       frontmatter {

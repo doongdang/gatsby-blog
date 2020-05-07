@@ -2,7 +2,6 @@
 title: "First Post - My First Post"
 date: 2020-05-05 20:18:00
 author: "SeokHyun Cho"
-path: "/first-post"
 image: ../../images/searoad.jpg
 tags:
   - code
