@@ -28,6 +28,7 @@ exports.createPages = ({ actions, graphql }) => {
   const templates = {
     singlePost: path.resolve("src/templates/single-post.js"),
     tagsPage: path.resolve("src/templates/tags-page.js"),
+    tagPosts: path.resolve("src/templates/tags-posts.js"),
   }
 
   return graphql(`
@@ -88,6 +89,18 @@ exports.createPages = ({ actions, graphql }) => {
         tags,
         tagPostCounts,
       },
+    })
+
+    // tasPost페이지 => 각 태그별 게시물 보여주는 페이지 만들기
+    tags.forEach(tag => {
+      createPage({
+        path: `/tag/${slugify(tag)}`,
+        component: templates.tagPosts,
+        context: {
+          tag,
+        },
+      })
+      console.log(tags)
     })
   })
 }
