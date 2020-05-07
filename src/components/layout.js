@@ -9,10 +9,13 @@ import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import "../styles/index.scss"
+import { Row, Col } from "reactstrap"
+
 import Header from "./header"
 import Footer from "./Footer"
+import Sidebar from "./Sidebar"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, pageTitle }) => {
   useEffect(() => {
     const script = document.createElement("script")
 
@@ -40,7 +43,13 @@ const Layout = ({ children }) => {
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
       <div className={"container"} id={"content"}>
-        <main>{children}</main>
+        <h1>{pageTitle}</h1>
+        <Row>
+          <Col md="9">{children}</Col>
+          <Col md="3">
+            <Sidebar />
+          </Col>
+        </Row>
       </div>
       <Footer />
     </>

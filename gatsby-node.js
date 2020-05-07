@@ -16,7 +16,7 @@ exports.onCreateNode = ({ node, actions }) => {
     createNodeField({
       node,
       name: "slug",
-      value: slugFromTitle,
+      value: "/" + slugFromTitle,
     })
   }
 } // node.internal.type이 마크다운 형식일 경우 slugify 함수를 통해서 title을 url친화적으로 변경한후 새로은 필드를 만들어 집어넣는다
