@@ -33,7 +33,10 @@ const IndexPage = () => (
 )
 const indexQuery = graphql`
   query MyQuery {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 3
+    ) {
       edges {
         node {
           id
