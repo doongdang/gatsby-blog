@@ -29,12 +29,12 @@ h2 {
   background-color: white;
   // border-right: 1px solid rgba(0, 0, 0, 0.4);
   // border-left: 1px solid rgba(0, 0, 0, 0.4);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   line-height: 1;
 }
 .navbar-light .navbar-nav .nav-link,
 .navbar-light .navbar-brand {
-  color: #0056b3;
+  color: #999;
   &:hover {
     color: #007bff;
   }
