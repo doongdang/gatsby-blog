@@ -7,9 +7,13 @@ import TagPaginationLinks from "../components/TagPaginationLinks"
 const tagPostList = props => {
   const posts = props.data.allMarkdownRemark.edges
   const { currentPage, numberOfPages, tag } = props.pageContext
+  const { totalCount } = props.data.allMarkdownRemark
+  const pageHeader = `${totalCount} post${
+    totalCount === 1 ? "" : "s"
+  } tagged with "${tag}"`
 
   return (
-    <Layout>
+    <Layout pageTitle={pageHeader}>
       {posts.map(({ node }) => (
         <Post
           key={node.id}
@@ -38,6 +42,7 @@ export const tagPostListQuery = graphql`
       limit: $limit
       skip: $skip
     ) {
+      totalCount
       edges {
         node {
           id

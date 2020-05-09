@@ -22,7 +22,7 @@ const Footer = () => (
         </li>
         <li>
           <a
-            href="https://www.facebook.com"
+            href="https://www.instagram.com/chosh0428/"
             target="_blank"
             rel="noopener noreferrer"
             className="instagram"
@@ -32,7 +32,7 @@ const Footer = () => (
         </li>
         <li>
           <a
-            href="https://www.facebook.com"
+            href="https://github.com/doongdang"
             target="_blank"
             rel="noopener noreferrer"
             className="github"
