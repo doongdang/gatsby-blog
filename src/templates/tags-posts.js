@@ -5,6 +5,7 @@ import Post from "../components/Post"
 
 const tagPosts = ({ data, pageContext }) => {
   const { tag } = pageContext
+
   const { totalCount } = data.allMarkdownRemark
   const pageHeader = `${totalCount} post${
     totalCount === 1 ? "" : "s"
