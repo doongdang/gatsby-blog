@@ -34,7 +34,6 @@ const IndexPage = () => {
                   tags={node.frontmatter.tags}
                 /> // query에서 받아온 data를 render의 인자로 주고 각 data속의 노드들을 Post에 넣어서 표현한다.
               ))}
-
               <PaginationLinks currentPage={1} numberOfPages={numberOfPages} />
             </div>
           )

@@ -9,7 +9,7 @@ const tagPostList = props => {
   const { currentPage, numberOfPages, tag } = props.pageContext
 
   return (
-    <Layout pageTitle={`Page: ${currentPage}`}>
+    <Layout>
       {posts.map(({ node }) => (
         <Post
           key={node.id}
