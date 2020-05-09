@@ -30,6 +30,7 @@ exports.createPages = ({ actions, graphql }) => {
     tagsPage: path.resolve("src/templates/tags-page.js"),
     tagPosts: path.resolve("src/templates/tags-posts.js"),
     postList: path.resolve("src/templates/post-list.js"),
+    tagPostList: path.resolve("src/templates/tagPost-list.js"),
   }
 
   return graphql(`
@@ -102,7 +103,8 @@ exports.createPages = ({ actions, graphql }) => {
         },
       })
     })
-    // 한페이지에 몇개의 게시글 보여줄지 정하는 부분
+
+    //홈에서  한페이지에 몇개의 게시글 보여줄지 정하는 부분
 
     const postsPerPage = 3
     const numberOfPages = Math.ceil(posts.length / postsPerPage)
@@ -122,6 +124,19 @@ exports.createPages = ({ actions, graphql }) => {
           currentPage,
           numberOfPages,
         },
+      })
+      tags.forEach(tag => {
+        createPage({
+          path: `/tag/${slugify(tag)}/page/${currentPage}`,
+          component: templates.tagPostList,
+          context: {
+            limit: postsPerPage,
+            skip: index * postsPerPage,
+            currentPage,
+            numberOfPages,
+            tag,
+          },
+        })
       })
     })
   })

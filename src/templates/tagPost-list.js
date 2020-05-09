@@ -1,24 +1,16 @@
 import React from "react"
-import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Post from "../components/Post"
+import { graphql } from "gatsby"
 import TagPaginationLinks from "../components/TagPaginationLinks"
-import SEO from "../components/seo"
 
-const tagPosts = ({ data, pageContext }) => {
-  const { tag } = pageContext
-  let numberOfPages
-  const postsPerPage = 3
-  const { totalCount } = data.allMarkdownRemark
-  const pageHeader = `${totalCount} post${
-    totalCount === 1 ? "" : "s"
-  } tagged with "${tag}"`
+const tagPostList = props => {
+  const posts = props.data.allMarkdownRemark.edges
+  const { currentPage, numberOfPages, tag } = props.pageContext
 
-  numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / postsPerPage)
   return (
-    <Layout pageTitle={pageHeader}>
-      <SEO title={`${tag} Tag`} keywords={[`gatsby`, `application`, `react`]} />
-      {data.allMarkdownRemark.edges.map(({ node }) => (
+    <Layout pageTitle={`Page: ${currentPage}`}>
+      {posts.map(({ node }) => (
         <Post
           key={node.id}
           slug={node.fields.slug}
@@ -30,9 +22,8 @@ const tagPosts = ({ data, pageContext }) => {
           fluid={node.frontmatter.image.childImageSharp.fluid}
         />
       ))}
-
       <TagPaginationLinks
-        currentPage={1}
+        currentPage={currentPage}
         numberOfPages={numberOfPages}
         tag={tag}
       />
@@ -40,19 +31,19 @@ const tagPosts = ({ data, pageContext }) => {
   )
 }
 
-export const tagQuery = graphql`
-  query tagPostsQuery($tag: String!) {
+export const tagPostListQuery = graphql`
+  query tagPostListQuery($skip: Int!, $limit: Int!) {
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
+      limit: $limit
+      skip: $skip
     ) {
-      totalCount
       edges {
         node {
           id
           frontmatter {
             title
-            date(formatString: "MMM Do YYYY")
+            date(formatString: "MMM Do YYY")
             author
             tags
             image {
@@ -72,4 +63,5 @@ export const tagQuery = graphql`
     }
   }
 `
-export default tagPosts
+
+export default tagPostList

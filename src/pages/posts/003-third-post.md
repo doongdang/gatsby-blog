@@ -5,6 +5,7 @@ author: "SeokHyun Cho"
 image: ../../images/searoad.jpg
 tags:
   - tutorial
+  - gatsby
 ---
 
 어렵다 어려워. 어렵다 어려워. 어렵다 어려워. 어렵다 어려워. 어렵다 어려워. 어렵다 어려워. 어렵다 어려워.
