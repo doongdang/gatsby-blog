@@ -2,6 +2,7 @@
 title: "Fifth Post - My Fifth Post"
 date: 2020-05-09 19:04:00
 author: "SeokHyun Cho"
+image: ../../images/success.jpg
 tags:
   - gatsby
 ---
