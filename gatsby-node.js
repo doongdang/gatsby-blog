@@ -12,6 +12,7 @@ const _ = require("lodash")
 
 exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
+
   if (node.internal.type === "MarkdownRemark") {
     const slugFromTitle = slugify(node.frontmatter.title)
     createNodeField({

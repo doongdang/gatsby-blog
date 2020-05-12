@@ -4,7 +4,6 @@ date: 2020-05-05 20:18:00
 author: "SeokHyun Cho"
 image: ../../images/searoad.jpg
 tags:
-  - code
   - gatsby
 ---
 

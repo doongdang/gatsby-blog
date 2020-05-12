@@ -10,9 +10,9 @@ const tagPosts = ({ data, pageContext }) => {
   let numberOfPages
   const postsPerPage = 3
   const { totalCount } = data.allMarkdownRemark
-  const pageHeader = `${totalCount} post${
+  const pageHeader = `${totalCount} Post${
     totalCount === 1 ? "" : "s"
-  } tagged with "${tag}"`
+  } Tagged With "${tag}"`
 
   numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / postsPerPage)
   return (

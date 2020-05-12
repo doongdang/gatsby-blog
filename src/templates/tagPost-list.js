@@ -8,9 +8,9 @@ const tagPostList = props => {
   const posts = props.data.allMarkdownRemark.edges
   const { currentPage, numberOfPages, tag } = props.pageContext
   const { totalCount } = props.data.allMarkdownRemark
-  const pageHeader = `${totalCount} post${
+  const pageHeader = `${totalCount} Post${
     totalCount === 1 ? "" : "s"
-  } tagged with "${tag}"`
+  } Tagged With "${tag}"`
 
   return (
     <Layout pageTitle={pageHeader}>
@@ -36,9 +36,10 @@ const tagPostList = props => {
 }
 
 export const tagPostListQuery = graphql`
-  query tagPostListQuery($skip: Int!, $limit: Int!) {
+  query tagPostListQuery($skip: Int!, $limit: Int!, $tag: String!) {
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { tags: { in: [$tag] } } }
       limit: $limit
       skip: $skip
     ) {
